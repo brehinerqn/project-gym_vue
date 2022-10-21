@@ -29,16 +29,19 @@
             <td>{{ c.nivel }}</td>
             <td>{{ c.email }}</td>
             <td>{{ c.injures }}</td>
-            <td>{{ c.created_at}}</td>
+            <td>{{ c.time}}</td>
             <td>
               <button id="btn" type="button" class="btn btn-primary" data-bs-toggle="modal"
                 data-bs-target="#staticBackdrop">
-                <img id="btns" src="../../assets/img/edit.png" />
+                <img id="btns" src="../../assets/img/edit.png"/>
               </button>
             </td>
             <td>
-              <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop1">
+              <!-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop1" >
                 <img id="btns" src="../../assets/img/delete.png" />
+              </button> -->
+              <button type="button" class="btn btn-primary" @click="borrar(c.id)">
+                <img id="btns" src="../../assets/img/delete.png"/>
               </button>
             </td>
           </tr>
@@ -99,6 +102,11 @@
               <input type="text" name="injures" v-model="form.injures" />
             </div>
             <br>
+            <!-- <div>
+              <label for="">fecha</label>
+              <input type="date" name="time" v-model="form.time" />
+            </div> -->
+            <br>
 
 
 
@@ -110,7 +118,7 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary" @click="store()"> created</button>
+          <button type="button" class="btn btn-primary " @click="store()" data-bs-dismiss="modal"> created</button>
         </div>
       </div>
     </div>
@@ -134,25 +142,7 @@
       </div>
     </div>
   </div>
-  <!-- Modal eliminar -->
-  <div class="modal fade" id="staticBackdrop1" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-    aria-labelledby="staticBackdropLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          ...
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Understood</button>
-        </div>
-      </div>
-    </div>
-  </div>
+ 
 
 
 </template>
@@ -179,6 +169,7 @@ export default {
         nivel: "",
         email: "",
         injures: "",
+        // time: "",
         companies_id: ""
 
       },
@@ -207,12 +198,23 @@ export default {
 
       try {
         console.log(this.form)
-        let response = await axios.post('/api/clients', this.form);
-        
+        let response = await this.axios.post('/api/clients', this.form);
+        this.get_clients();
+        this.form = "";
+
       }
       catch (e) {
         console.log(e)
       }
+    },
+    async borrar(id) {
+
+      console.log('rol :' + id);
+      if (confirm('Seguro de eliminar?')) {
+        await this.axios.delete("api/clients/" + id);
+        this.get_clients();
+      }
+
     }
   },
 };

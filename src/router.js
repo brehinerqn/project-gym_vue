@@ -12,7 +12,6 @@ import Nav from "./components/Admin/Nav.vue";
 import Clients from "./components/Admin/Clients.vue";
 import Assists from "./components/Admin/Assists.vue";
 import Inventory from "./components/Admin/Inventory.vue";
-import New_client from "./components/Admin/New_client.vue";
 import Sales from "./components/Admin/Sales.vue";
 import HomeAdmin from "./components/Admin/Home.vue";
 import Admin from "./components/Admin/Admin.vue";
@@ -72,10 +71,6 @@ const routes = [
       {
         path: "Assists",
         component: Assists,
-      },
-      {
-        path: "New_client",
-        component: New_client,
       },
       {
         path: "Inventory",

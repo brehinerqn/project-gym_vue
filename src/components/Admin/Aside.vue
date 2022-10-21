@@ -28,13 +28,6 @@
               </a>
             </li>
             <li id="li">
-              <a class="nav-link text-white">
-                <span class="tab-text">
-                  <router-link class="link" to="/Admin/New_client">New clients</router-link>
-                </span>
-              </a>
-            </li>
-            <li id="li">
               <a class="nav-link text-white"><img src="/src/assets/img/asite.png" id="home" />
                 <span class="tab-text">
                   <router-link class="link" to="/Admin/Assists">Assists</router-link>
