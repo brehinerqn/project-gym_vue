@@ -1,0 +1,13 @@
+#tab6{
+    display: flex;
+    flex-flow: column;
+    width: 86.4vw;
+}
+.form{
+    display: flex;
+    flex-flow: column;
+    margin-top: 2rem ;
+    text-align: center;
+    
+    align-items: center;
+}

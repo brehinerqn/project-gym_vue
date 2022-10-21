@@ -1,0 +1,48 @@
+@font-face {
+    font-family: titulo;
+    src: url(../assets/img/Brothery.ttf);
+  }
+  .contenedor {
+    height: 100%;
+    width: 87vw;
+  }
+  article {
+    height: 100%;
+    overflow-y: scroll;
+  }
+  article::-webkit-scrollbar {
+    display: none;
+  }
+  table,
+  th,
+  td {
+    border: 1px solid rgb(0, 0, 0);
+    border-collapse: collapse;
+    background: rgba(255, 255, 255, 0.425);
+  }
+  th,
+  td {
+    padding: 4px;
+  }
+  
+  table {
+    text-align: center;
+    margin: 2rem;
+    width: 95%;
+  }
+  #btns{
+    width: 25px;
+    margin: 0%;
+    padding: 0%;
+    
+  }
+ 
+  h1 {
+    font-family: titulo;
+    display: flex;
+    justify-content: center;
+    color: aliceblue;
+    margin-top: 20px;
+    text-shadow: 5px 3px 8px rgb(104, 103, 103);
+   
+  }

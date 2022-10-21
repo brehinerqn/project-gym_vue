@@ -1,0 +1,35 @@
+.naav {
+  width: 280px;
+  background-color: #212529!important;
+  text-decoration: none;
+}
+
+#logo {
+  width: 60px;
+  margin-left: 20px;
+  text-decoration: none;
+}
+
+#tit{
+  color: aliceblue;
+}
+#home {
+  width: 25px;
+  padding: 0;
+  filter: invert(90%) sepia(10%) saturate(461%) hue-rotate(356deg) brightness(105%) contrast(104%);
+}
+#li{
+  margin: 10px;
+  text-decoration: none;
+  
+
+ 
+}
+
+.link {
+  margin-left: 20px;
+  color: aliceblue;
+  text-decoration: none;
+  text-align: center;
+
+}

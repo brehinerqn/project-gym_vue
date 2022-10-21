@@ -1,0 +1,27 @@
+.container-view {
+    display: flex;
+    flex-flow: row;
+    margin: 0%;
+    overflow: hidden;
+    padding: 0%;
+  }
+  
+  .container-right {
+    display: flex;
+    flex-flow: column;
+  }
+  .Admin-main {
+    flex: 1 0 0;
+    margin-top: .7rem;
+    margin-left: 1rem;
+    flex-flow: column;
+    background-image: url("../src/assets/img/foto.jpg");
+    background-size: cover;
+    background-position: top;
+  
+  
+  }
+  
+  .Admin-sideBar {
+    flex: 13% 0 0;
+  }
