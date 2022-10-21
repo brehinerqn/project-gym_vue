@@ -32,7 +32,7 @@
             <td>{{ c.time}}</td>
             <td>
               <button id="btn" type="button" class="btn btn-primary" data-bs-toggle="modal"
-                data-bs-target="#staticBackdrop">
+                data-bs-target="#staticBackdrop" @click="edit_clients(c)">
                 <img id="btns" src="../../assets/img/edit.png"/>
               </button>
             </td>
@@ -133,11 +133,52 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          ...
+          <form>
+            <div>
+              <label for="">name</label>
+              <input type="text" name="name" v-model="clients_edit.name" />
+            </div>
+            <br>
+
+            <div>
+              <label for="">age</label>
+              <input type="number" name="age" v-model="clients_edit.age" />
+            </div>
+            <br>
+            <div>
+              <label for="">weight</label>
+              <input type="number" name="weight" v-model="clients_edit.weight" />
+            </div>
+            <br>
+            <div>
+              <label for="">nivel</label>
+              <input type="text" name="nivel" v-model="clients_edit.nivel" />
+            </div>
+            <br>
+            <div>
+              <label for="">email</label>
+              <input type="email" name="email" v-model="clients_edit.email" />
+            </div>
+            <br>
+            <div>
+              <label for="">injures</label>
+              <input type="text" name="injures" v-model="clients_edit.injures" />
+            </div>
+            <br>
+            <!-- <div>
+              <label for="">fecha</label>
+              <input type="date" name="time" v-model="form.time" />
+            </div> -->
+            <br>
+
+
+
+
+          </form>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Understood</button>
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" @click="updated()">edit</button>
+          
         </div>
       </div>
     </div>
@@ -162,6 +203,7 @@ export default {
   data() {
     return {
       clients: [],
+      clients_edit:{},
       form: {
         name: "",
         age: "",
@@ -207,6 +249,19 @@ export default {
         console.log(e)
       }
     },
+
+    edit_clients(c){
+         this.clients_edit = c;
+    },
+
+    async updated() {
+      let id = this.clients_edit.id;
+      console.log(id + 'dfsdfsfsdfsd')
+      await this.axios.put('/api/clients/' + id, this.clients_edit);
+      this.get_clients();
+      this.clients_edit="";
+    },
+
     async borrar(id) {
 
       console.log('rol :' + id);
