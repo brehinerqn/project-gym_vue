@@ -4,7 +4,7 @@
     <article>
 
 
-      <button id="btn" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop2">
+      <button id="btn" type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#staticBackdrop2">
         <img id="btns" src="../../assets/img/edit.png" />
       </button>
 
@@ -18,7 +18,10 @@
             <th>nivel</th>
             <th>email</th>
             <th>injuries</th>
-            <th>fecha</th>
+            <th>start date</th>
+            <th>finish date</th>
+            <th>payment period</th>
+            <th>price</th>
           </tr>
         </thead>
         <tbody>
@@ -29,19 +32,24 @@
             <td>{{ c.nivel }}</td>
             <td>{{ c.email }}</td>
             <td>{{ c.injures }}</td>
-            <td>{{ c.time}}</td>
+            <td>{{ c.start_date}}</td>
+            <td>{{ c.finish_date}}</td>
+            <td>{{ c.tarifa}}</td>
+            <td>{{ c.price}}</td>
+            <td>{{ c.companies_id}}</td>
+
             <td>
-              <button id="btn" type="button" class="btn btn-primary" data-bs-toggle="modal"
-                data-bs-target="#staticBackdrop" @click="edit_clients(c)">
-                <img id="btns" src="../../assets/img/edit.png"/>
+              <button type="button" class="btn btn" data-bs-toggle="modal" data-bs-target="#staticBackdrop"
+                @click="edit_clients(c)">
+                <img id="btns" src="../../assets/img/edit.png" />
               </button>
             </td>
             <td>
               <!-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop1" >
                 <img id="btns" src="../../assets/img/delete.png" />
               </button> -->
-              <button type="button" class="btn btn-primary" @click="borrar(c.id)">
-                <img id="btns" src="../../assets/img/delete.png"/>
+              <button type="button" class="btn" @click="borrar(c.id)">
+                <img id="btns" src="../../assets/img/delete.png" />
               </button>
             </td>
           </tr>
@@ -102,11 +110,28 @@
               <input type="text" name="injures" v-model="form.injures" />
             </div>
             <br>
-            <!-- <div>
-              <label for="">fecha</label>
-              <input type="date" name="time" v-model="form.time" />
-            </div> -->
+            <div>
+              <label for="">injures</label>
+              <input type="text" name="injures" v-model="form.injures" />
+            </div>
             <br>
+            <div>
+              <label for="">start date</label>
+              <input type="date" name="injures" v-model="form.start_date" />
+            </div>
+            <br>
+            <div>
+              <label for=""> finish date</label>
+              <input type="date" name="injures" v-model="form.finish_date" />
+            </div>
+            <br>
+            <div>
+              <label for=""> payment period</label>
+              <input type="text" name="injures" v-model="form.tarifa" />
+            </div>
+            <br>
+
+
 
 
 
@@ -165,25 +190,44 @@
               <input type="text" name="injures" v-model="clients_edit.injures" />
             </div>
             <br>
-            <!-- <div>
-              <label for="">fecha</label>
-              <input type="date" name="time" v-model="form.time" />
-            </div> -->
+            <div>
+              <label for="">start date</label>
+              <input type="date" name="injures" v-model="clients_edit.start_date" />
+            </div>
             <br>
-
-
+            <div>
+              <label for=""> finish date</label>
+              <input type="date" name="injures" v-model="clients_edit.finish_date" />
+            </div>
+            <br>
+            <div>
+              <label for=""> payment period</label>
+              <input type="text" name="injures" v-model="clients_edit.tarifa" />
+            </div>
+            <br>
+            <div>
+              <select class="form-select" aria-label="Default select example" aria-placeholder="seleciona tu periodo de pago"
+              name="rates"
+              v-model="from.tarifa">
+                
+                <option value="1">One</option>
+                <option value="2">Two</option>
+                <option value="3">Three</option>
+              </select>
+            </div>
+            <br>
 
 
           </form>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" @click="updated()">edit</button>
-          
+
         </div>
       </div>
     </div>
   </div>
- 
+
 
 
 </template>
@@ -197,13 +241,14 @@ export default {
 
   mounted() {
 
-
+    this.get_tarifas();
     this.get_clients();
   },
   data() {
     return {
       clients: [],
-      clients_edit:{},
+      rates_list:[],
+      clients_edit: {},
       form: {
         name: "",
         age: "",
@@ -211,7 +256,10 @@ export default {
         nivel: "",
         email: "",
         injures: "",
-        // time: "",
+        start_date: "",
+        finish_date: "",
+        tarifa: "",
+        
         companies_id: ""
 
       },
@@ -219,7 +267,26 @@ export default {
     };
 
   },
+
+
+
   methods: {
+    reset_form() {
+      this.form = {
+        name: "",
+        age: "",
+        weight: "",
+        nivel: "",
+        email: "",
+        injures: "",
+        start_date: "",
+        finish_date: "",
+        tarifa: "",
+
+        companies_id: ""
+      }
+    },
+
     async get_clients() {
       try {
         let rs = await this.axios.get("/api/clients"
@@ -227,7 +294,7 @@ export default {
           //   headers: { Authorization: "Bearer " + this.token },
           // }
         );
-        this.clients = rs.data;
+        this.clients = rs.data.clients_list;
       } catch (e) {
         // console.log(e);
       }
@@ -239,10 +306,9 @@ export default {
       console.log(this.form.companies_id)
 
       try {
-        console.log(this.form)
         let response = await this.axios.post('/api/clients', this.form);
         this.get_clients();
-        this.form = "";
+        this.reset_form();
 
       }
       catch (e) {
@@ -250,16 +316,27 @@ export default {
       }
     },
 
-    edit_clients(c){
-         this.clients_edit = c;
+    async get_tarifas(){
+      this.user = JSON.parse(localStorage.user);
+      const companies_id = this.user.companies_id;
+      try{
+        const rs = await this.axios.post('')
+
+      }catch(e){
+
+      }
+    },
+
+    edit_clients(c) {
+      this.clients_edit = c;
     },
 
     async updated() {
       let id = this.clients_edit.id;
-      console.log(id + 'dfsdfsfsdfsd')
+      console.log(id)
       await this.axios.put('/api/clients/' + id, this.clients_edit);
       this.get_clients();
-      this.clients_edit="";
+
     },
 
     async borrar(id) {
