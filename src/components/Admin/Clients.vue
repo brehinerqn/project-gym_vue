@@ -34,7 +34,7 @@
             <td>{{ c.injures }}</td>
             <td>{{ c.start_date}}</td>
             <td>{{ c.finish_date}}</td>
-            <td>{{ c.tarifa}}</td>
+            <td>{{ c.rates}}</td>
             <td>{{ c.price}}</td>
             <td>{{ c.companies_id}}</td>
 
@@ -127,11 +127,23 @@
             <br>
             <div>
               <label for=""> payment period</label>
-              <input type="text" name="injures" v-model="form.tarifa" />
+              <input type="text" name="injures" v-model="form.rates" />
             </div>
             <br>
 
-
+            <article>
+              <select class="form-select" aria-label="Default select example" aria-placeholder="seleciona tu periodo de pago"
+              name="rates"
+             v-model="rates">
+                
+                <option v-for=" t in rates_list" 
+                :value="t.id"
+                :key="'rates' + t.id"
+                :selected="true"><p>{{t.name}}</p><p>{{t.price}}</p></option>
+                
+              </select>
+            </article>
+           
 
 
 
@@ -202,19 +214,11 @@
             <br>
             <div>
               <label for=""> payment period</label>
-              <input type="text" name="injures" v-model="clients_edit.tarifa" />
+              <input type="text" name="injures" v-model="clients_edit.rates" />
             </div>
             <br>
-            <div>
-              <select class="form-select" aria-label="Default select example" aria-placeholder="seleciona tu periodo de pago"
-              name="rates"
-              v-model="from.tarifa">
-                
-                <option value="1">One</option>
-                <option value="2">Two</option>
-                <option value="3">Three</option>
-              </select>
-            </div>
+            
+              
             <br>
 
 
@@ -258,7 +262,7 @@ export default {
         injures: "",
         start_date: "",
         finish_date: "",
-        tarifa: "",
+        rates: "",
         
         companies_id: ""
 
@@ -281,7 +285,7 @@ export default {
         injures: "",
         start_date: "",
         finish_date: "",
-        tarifa: "",
+        rates: "",
 
         companies_id: ""
       }
@@ -320,10 +324,11 @@ export default {
       this.user = JSON.parse(localStorage.user);
       const companies_id = this.user.companies_id;
       try{
-        const rs = await this.axios.post('')
+        const rs = await this.axios.post(`api/companies/rates/${companies_id}`);
+        this.rates_list = rs.data.rates_list;
 
       }catch(e){
-
+console.log(e)
       }
     },
 
