@@ -134,7 +134,7 @@
             <article>
               <select class="form-select" aria-label="Default select example" aria-placeholder="seleciona tu periodo de pago"
               name="rates"
-             v-model="rates">
+             >
                 
                 <option v-for=" t in rates_list" 
                 :value="t.id"
@@ -245,7 +245,7 @@ export default {
 
   mounted() {
 
-    this.get_tarifas();
+    this.get_rates();
     this.get_clients();
   },
   data() {
@@ -286,7 +286,6 @@ export default {
         start_date: "",
         finish_date: "",
         rates: "",
-
         companies_id: ""
       }
     },
@@ -320,13 +319,13 @@ export default {
       }
     },
 
-    async get_tarifas(){
+    async get_rates(){
       this.user = JSON.parse(localStorage.user);
       const companies_id = this.user.companies_id;
       try{
         const rs = await this.axios.post(`api/companies/rates/${companies_id}`);
         this.rates_list = rs.data.rates_list;
-
+        
       }catch(e){
 console.log(e)
       }
