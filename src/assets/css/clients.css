@@ -51,3 +51,26 @@
     text-shadow: 5px 3px 8px rgb(104, 103, 103);
    
   }
+  form{
+    display: flex;
+  }
+  #izq{
+   margin-left: 1rem;
+    
+  }
+  #dere{
+    margin-left: 1rem;
+     
+   }
+   .modal-content{
+    background: rgba(255, 255, 255, 0.705);
+    background-image: url('../src/assets/img/qw.jpg');
+    background-size: cover;
+    background-position: top;
+    background-position: center;
+   }
+   #article{
+    width: 180px;
+    height: 150px;
+    background-color:rgb(233, 233, 233) ;
+   }
