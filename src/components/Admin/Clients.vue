@@ -81,34 +81,33 @@
           <form>
             <div id="izq">
               <div class="form-floating mb-3">
-                <input type="text" name="name" v-model="form.name" class="form-control" id="floatingInput"
-                  placeholder="">
-                <label for="floatingInput">name</label>
+                <input type="text" name="name" v-model="form.name" class="form-control" id="floatingInput1">
+                <label for="floatingInput1">name</label>
               </div>
               <div class="form-floating mb-3">
-                <input type="email" name="email" v-model="form.email" class="form-control" id="floatingInput"
+                <input type="email" name="email" v-model="form.email" class="form-control" id="floatingInput2"
                   placeholder="name@example.com">
-                <label for="floatingInput"> email</label>
+                <label for="floatingInput2"> email</label>
               </div>
               <div class="form-floating mb-3">
-                <input type="password" name="password" v-model="form.password" class="form-control" id="floatingInput"
+                <input type="password" name="password" v-model="form.password" class="form-control" id="floatingInput3"
                   placeholder="password">
-                <label for="floatingInput"> password</label>
+                <label for="floatingInput3"> password</label>
               </div>
               <div class="form-floating mb-3">
                 <input type="password" name="password" v-model="form.password_confirmation" class="form-control"
-                  id="floatingInput" placeholder="password_confirmation">
-                <label for="floatingInput">password confirmation</label>
+                  id="floatingInput4" placeholder="password_confirmation">
+                <label for="floatingInput4">password confirmation</label>
               </div>
               <div class="form-floating mb-3">
-                <input type="number" name="age" v-model="form.age" class="form-control" id="floatingInput"
+                <input type="number" name="age" v-model="form.age" class="form-control" id="floatingInput5"
                   placeholder="">
-                <label for="floatingInput">age</label>
+                <label for="floatingInput5">age</label>
               </div>
               <div class="form-floating mb-3">
-                <input type="number" name="weight" v-model="form.weight" class="form-control" id="floatingInput"
+                <input type="number" name="weight" v-model="form.weight" class="form-control" id="floatingInput6"
                   placeholder="">
-                <label for="floatingInput"> weight</label>
+                <label for="floatingInput6"> weight</label>
               </div>
 
 
@@ -117,25 +116,25 @@
 
             <div id="dere">
               <div class="form-floating mb-3">
-                <input type="text" name="nivel" v-model="form.nivel" class="form-control" id="floatingInput"
+                <input type="text" name="nivel" v-model="form.nivel" class="form-control" id="floatingInput7"
                   placeholder="">
-                <label for="floatingInput"> nivel</label>
+                <label for="floatingInput7"> nivel</label>
               </div>
 
               <div class="form-floating mb-3">
-                <input type="text" name="injures" v-model="form.injures" class="form-control" id="floatingInput"
+                <input type="text" name="injures" v-model="form.injures" class="form-control" id="floatingInput8"
                   placeholder="">
-                <label for="floatingInput"> injures</label>
+                <label for="floatingInput8"> injures</label>
               </div>
               <div class="form-floating mb-3">
-                <input type="date" name="injures" v-model="form.start_date" class="form-control" id="floatingInput"
+                <input type="date" name="injures" v-model="form.start_date" class="form-control" id="floatingInput9"
                   placeholder="">
-                <label for="floatingInput"> start date</label>
+                <label for="floatingInput9"> start date</label>
               </div>
               <div class="form-floating mb-3">
-                <input type="date" name="injures" v-model="form.finish_date" class="form-control" id="floatingInput"
+                <input type="date" name="injures" v-model="form.finish_date" class="form-control" id="floatingInput0"
                   placeholder="">
-                <label for="floatingInput"> finish date</label>
+                <label for="floatingInput0"> finish date</label>
               </div>
             </div>
 
@@ -164,7 +163,7 @@
         </div>
         <div class="modal-body">
           <form>
-            <article id="article" v-for="t in rates_list" :key="'rates_list' + t.id">
+            <article id="article" v-for="t in rate_list" :key="'rate_list' + t.id">
               <p>
                 {{t.name}}
               </p>
@@ -272,7 +271,7 @@ export default {
   data() {
     return {
       clients: [],
-      rates_list: [],
+      rate_list: [],
       clients_edit: {},
       form: {
         name: "",
@@ -337,22 +336,25 @@ export default {
 
       }
       catch (e) {
-        console.log(e)
+        
       }
     },
+    //tarifa
 
     async get_rates() {
       this.user = JSON.parse(localStorage.user);
       const companies_id = this.user.companies_id;
       try {
         const rs = await this.axios.post(`api/companies/rates/${companies_id}`);
-        this.rates_list = rs.data.rates_list;
-        console.log(rates_list)
+        this.rate_list = rs.data.rates_list;
+        
 
       } catch (e) {
         console.log(e)
       }
     },
+      
+    //final tarifa
     
 
     edit_clients(c) {
