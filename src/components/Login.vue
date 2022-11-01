@@ -3,7 +3,6 @@
 
 <div class="container-template">
     <nav>
-      <!-- <router-link class="link" to="/Home">Home</router-link> -->
       <router-link class="link" to="/Principal">Principal</router-link>
       <router-link
         v-if="this.$route.path == '/Account'"

@@ -83,31 +83,37 @@
               <div class="form-floating mb-3">
                 <input type="text" name="name" v-model="form.name" class="form-control" id="floatingInput1">
                 <label for="floatingInput1">name</label>
+                <span style="color:aliceblue" v-if="errors.name"> {{errors.name}}</span>
               </div>
               <div class="form-floating mb-3">
                 <input type="email" name="email" v-model="form.email" class="form-control" id="floatingInput2"
                   placeholder="name@example.com">
                 <label for="floatingInput2"> email</label>
+                <span style="color:aliceblue" v-if="errors.email"> {{errors.email}}</span>
               </div>
               <div class="form-floating mb-3">
                 <input type="password" name="password" v-model="form.password" class="form-control" id="floatingInput3"
                   placeholder="password">
                 <label for="floatingInput3"> password</label>
+                <span style="color:aliceblue" v-if="errors.password"> {{errors.password}}</span>
               </div>
               <div class="form-floating mb-3">
                 <input type="password" name="password" v-model="form.password_confirmation" class="form-control"
                   id="floatingInput4" placeholder="password_confirmation">
                 <label for="floatingInput4">password confirmation</label>
+                <span style="color:aliceblue" v-if="errors.password_confirmation"> {{errors.password_confirmation}}</span>
               </div>
               <div class="form-floating mb-3">
                 <input type="number" name="age" v-model="form.age" class="form-control" id="floatingInput5"
                   placeholder="">
                 <label for="floatingInput5">age</label>
+                <span style="color:aliceblue" v-if="errors.age"> {{errors.age}}</span>
               </div>
               <div class="form-floating mb-3">
                 <input type="number" name="weight" v-model="form.weight" class="form-control" id="floatingInput6"
                   placeholder="">
                 <label for="floatingInput6"> weight</label>
+                <span style="color:aliceblue" v-if="errors.weight"> {{errors.weight}}</span>
               </div>
 
 
@@ -119,22 +125,26 @@
                 <input type="text" name="nivel" v-model="form.nivel" class="form-control" id="floatingInput7"
                   placeholder="">
                 <label for="floatingInput7"> nivel</label>
+                <span style="color:aliceblue" v-if="errors.nivel"> {{errors.nivel}}</span>
               </div>
 
               <div class="form-floating mb-3">
                 <input type="text" name="injures" v-model="form.injures" class="form-control" id="floatingInput8"
                   placeholder="">
                 <label for="floatingInput8"> injures</label>
+                <span style="color:aliceblue" v-if="errors.injures"> {{errors.injures}}</span>
               </div>
               <div class="form-floating mb-3">
                 <input type="date" name="injures" v-model="form.start_date" class="form-control" id="floatingInput9"
                   placeholder="">
                 <label for="floatingInput9"> start date</label>
+                <span style="color:aliceblue" v-if="errors.start_date"> {{errors.start_date}}</span>
               </div>
               <div class="form-floating mb-3">
                 <input type="date" name="injures" v-model="form.finish_date" class="form-control" id="floatingInput0"
                   placeholder="">
                 <label for="floatingInput0"> finish date</label>
+                <span style="color:aliceblue" v-if="errors.finish_date"> {{errors.finish_date}}</span>
               </div>
             </div>
 
@@ -144,7 +154,8 @@
 
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"   data-bs-toggle="modal" data-bs-target="#staticBackdrop3">select pago</button>
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" data-bs-toggle="modal"
+            data-bs-target="#staticBackdrop3">select pago</button>
           <!-- <button type="button" class="btn btn-primary " @click="store()" data-bs-dismiss="modal"> created</button> -->
         </div>
       </div>
@@ -163,9 +174,12 @@
         </div>
         <div class="modal-body">
           <form>
-            <article id="article" v-for="t in rate_list" :key="'rate_list' + t.id">
+            <article id="article" v-for="t in rates_list" :key="'rates_list' + t.id" @click="select_rate(t.id)">
               <p>
-                {{t.name}}
+                {{ t.name }}
+              </p>
+              <p>
+                {{ t.price }}
               </p>
 
             </article>
@@ -174,7 +188,7 @@
           </form>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" @click="updated()">edit</button>
+          <button type="button" class="btn btn-secondary" @click="store()">crear</button>
 
         </div>
       </div>
@@ -267,11 +281,15 @@ export default {
 
     this.get_rates();
     this.get_clients();
+    console.log(this.form)
   },
   data() {
     return {
       clients: [],
-      rate_list: [],
+      rates_list: [],
+      modal_create: null,
+      modal_rates: null,
+      errors: {},
       clients_edit: {},
       form: {
         name: "",
@@ -282,10 +300,11 @@ export default {
         injures: "",
         start_date: "",
         finish_date: "",
-        rates: "",
+        rates_id: "",
         password: "",
         password_confirmation: "",
-        companies_id: ""
+        companies_id: "",
+        user_id: "2",
 
       },
 
@@ -310,6 +329,19 @@ export default {
         companies_id: ""
       }
     },
+    error_message(e) {
+      this.errors = {};
+      if (e.response.data.errors) this.errors = e.response.data.errors;
+      else if (e.response.data.message == "Unauthenticated.") {
+        this.$router.push({
+          name: "Admin",
+          params: {
+            message: "datos incorrestos vuelve a intentarlo"
+          },
+        });
+      }
+
+    },
 
     async get_clients() {
       try {
@@ -325,18 +357,31 @@ export default {
     },
 
     async store() {
+      const modal1 = document.getElementById("staticBackdrop2");
+      const modal2 = document.getElementById("staticBackdrop3");
+      this.modal_create = bootstrap.Modal.getInstance(modal1);
+      this.modal_rates = bootstrap.Modal.getInstance(modal2);
 
       this.form.companies_id = JSON.parse(localStorage.user).companies_id;
       console.log(this.form.companies_id)
+      console.log(this.form)
+  
+      
 
       try {
         let response = await this.axios.post('/api/clients', this.form);
         this.get_clients();
         this.reset_form();
-
+        this.modal_create.hide();
+        this.modal_rates.hide();
       }
       catch (e) {
-        
+
+        console.log(e)
+        this.error_message(e);
+        this.modal_rates.hide();
+        this.modal_create.show();
+
       }
     },
     //tarifa
@@ -345,17 +390,22 @@ export default {
       this.user = JSON.parse(localStorage.user);
       const companies_id = this.user.companies_id;
       try {
-        const rs = await this.axios.post(`api/companies/rates/${companies_id}`);
-        this.rate_list = rs.data.rates_list;
-        
+        const rs = await this.axios.get(`api/companies/rates/${companies_id}`);
+        this.rates_list = rs.data.rates_list;
+        console.log(rs.data)
 
       } catch (e) {
         console.log(e)
       }
     },
-      
+
+    select_rate(id) {
+      this.form.rates_id = id
+      alert(this.form.rates_id)
+    },
+
     //final tarifa
-    
+
 
     edit_clients(c) {
       this.clients_edit = c;
