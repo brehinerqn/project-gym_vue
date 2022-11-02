@@ -401,45 +401,7 @@
                                 >
                                     {{ errors.email }}</span
                                 >
-                            </div>
-                            <div class="form-floating mb-3">
-                                <input
-                                    type="password"
-                                    name="password"
-                                    v-model="form.password"
-                                    class="form-control"
-                                    id="floatingInput3-edit"
-                                    placeholder="password"
-                                />
-                                <label for="floatingInput3-edit">
-                                    password</label
-                                >
-                                <span
-                                    style="color: aliceblue"
-                                    v-if="errors.password"
-                                >
-                                    {{ errors.password }}</span
-                                >
-                            </div>
-                            <div class="form-floating mb-3">
-                                <input
-                                    type="password"
-                                    name="password"
-                                    v-model="form.password_confirmation"
-                                    class="form-control"
-                                    id="floatingInput4-edit"
-                                    placeholder="password_confirmation"
-                                />
-                                <label for="floatingInput4-edit"
-                                    >password confirmation</label
-                                >
-                                <span
-                                    style="color: aliceblue"
-                                    v-if="errors.password_confirmation"
-                                >
-                                    {{ errors.password_confirmation }}</span
-                                >
-                            </div>
+                            </div>  
                             <div class="form-floating mb-3">
                                 <input
                                     type="number"
@@ -612,7 +574,7 @@
                     <button
                         type="button"
                         class="btn btn-secondary"
-                        @click="update()"
+                        @click="update(t)"
                     >
                         crear
                     </button>
@@ -755,10 +717,10 @@ export default {
         //final tarifa
 
         edit_clients(c) {
-            this.clients_edit = c;
+            this.form = c;
         },
 
-        async updated(payment_id) {
+        async update(cliente, payment_id) {
             const modal1 = document.getElementById("modal-edit");
             const modal2 = document.getElementById("modal-edit-rates");
             this.modal_edit = bootstrap.Modal.getInstance(modal1);
