@@ -1,77 +1,71 @@
 @font-face {
     font-family: titulo;
     src: url(../assets/img/Brothery.ttf);
-  }
-  .contenedor {
+}
+.contenedor {
     height: 100%;
     width: 87vw;
-  }
-  article {
+}
+article {
     height: 100%;
     overflow-y: scroll;
-  }
-  article::-webkit-scrollbar {
+}
+article::-webkit-scrollbar {
     display: none;
-  }
-  table,
-  th,
-  td {
+}
+table,
+th,
+td {
     border: 1px solid rgb(0, 0, 0);
     border-collapse: collapse;
     background: rgba(255, 255, 255, 0.425);
-  }
-  th,
-  td {
+}
+th,
+td {
     padding: 4px;
-  }
-  
-  table {
+}
+
+table {
     text-align: center;
     margin: 2rem;
     width: 95%;
-  }
-  #btns{
+}
+#btns {
     width: 25px;
     margin: 0%;
     padding: 0%;
-    
-  }
-  #btn{
+}
+#btn {
     display: flex;
     margin: 1rem;
-
-    
-  }
-  h1 {
+}
+h1 {
     font-family: titulo;
     display: flex;
     justify-content: center;
     color: aliceblue;
     margin-top: 20px;
     text-shadow: 5px 3px 8px rgb(104, 103, 103);
-   
-  }
-  form{
+}
+.form-tarifas {
     display: flex;
-  }
-  #izq{
-   margin-left: 1rem;
-    
-  }
-  #dere{
+}
+#izq {
     margin-left: 1rem;
-     
-   }
-   .modal-content{
+}
+#dere {
+    margin-left: 1rem;
+}
+.modal-content {
     background: rgba(255, 255, 255, 0.705);
-    background-image: url('../src/assets/img/qw.jpg');
+    background-image: url("../src/assets/img/qw.jpg");
     background-size: cover;
     background-position: top;
     background-position: center;
-   }
-   #article{
+}
+#article {
     width: 180px;
     padding: 10px;
     margin-left: 10px;
-    background-color:rgb(233, 233, 233) ;
-   }
+    background-color: rgb(233, 233, 233);
+}
