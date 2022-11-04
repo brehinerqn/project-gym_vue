@@ -1,6 +1,6 @@
 <template>
     <div class="todo">
-        <div class="container-login">
+        <div class="container" id="container" >
             <div class="form-container sign-up-container">
                 <form action="#">
                     <h1>Create Account</h1>
@@ -116,6 +116,7 @@ export default {
         signUpButton.addEventListener("click", () => {
             container.classList.add("right-panel-active");
         });
+
 
         signInButton.addEventListener("click", () => {
             container.classList.remove("right-panel-active");

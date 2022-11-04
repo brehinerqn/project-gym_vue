@@ -523,7 +523,7 @@
                         class="btn btn-secondary"
                         data-bs-dismiss="modal"
                         data-bs-toggle="modal"
-                        data-bs-target="#motal-edit-rates"
+                        data-bs-target="#modal-edit-rates"
                     >
                         select pago
                     </button>
@@ -536,7 +536,7 @@
     <!-- Modal editar rates -->
     <div
         class="modal fade"
-        id="motal-edit-rates"
+        id="modal-edit-rates"
         data-bs-backdrop="static"
         data-bs-keyboard="false"
         tabindex="-1"
@@ -575,6 +575,8 @@
                         type="button"
                         class="btn btn-secondary"
                         @click="update(t)"
+                        data-bs-dismiss="modal"
+
                     >
                         crear
                     </button>
@@ -727,8 +729,9 @@ export default {
             this.modal_edit_rates = bootstrap.Modal.getInstance(modal2);
 
             try {
-                let response = await this.axios.post(
-                    `/api/clients/${payment_id}`,
+                console.log(this.form)
+                let response = await this.axios.put(
+                    `/api/clients/${this.form.users_id}`,
                     this.form
                 );
                 this.get_clients();
