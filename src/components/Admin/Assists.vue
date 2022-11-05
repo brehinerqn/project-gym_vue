@@ -5,15 +5,17 @@
             <table>
               <thead>
                 <tr>
-                  <th>fecha</th>
                   <th>nombre</th>
+                  <th>hora</th>
+                  <th>fecha</th>
                   <th>asistencias</th>
                 </tr>
               </thead>
               <tbody>
                 <tr v-for="a in asistencias" :key="'asistencias' + a.id">
-                  <td>{{ a.time }}</td>
                   <td>{{ a.name }}</td>
+                  <td>{{ a.time }}</td>
+                  <td>{{ a.date }}</td>
                   <td>{{ a.asiste }}</td>
                 </tr>
               </tbody>
@@ -28,9 +30,6 @@
 <script>
     export default {
       mounted() {
-       
-    
-        
         this.get_asistencias();
 
       },
@@ -53,7 +52,7 @@
             );
             this.asistencias = rs.data.attendances_list;
           } catch (e) {
-            // console.log(e);
+            console.log(e);
           }
         },
     

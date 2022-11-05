@@ -6,8 +6,9 @@ import Home from "./components/Home.vue";
 import ForgotPassword from "./components/ForgotPassword.vue";
 import ResetPassword from "./components/ResetPassword.vue";
 // admin routes 
-import Aside from "./components/Admin/Aside.vue";
-import Nav from "./components/Admin/Nav.vue";
+// import Aside from "./components/Admin/Aside.vue";
+// import Nav from "./components/Admin/Nav.vue";
+
 
 import Clients from "./components/Admin/Clients.vue";
 import Assists from "./components/Admin/Assists.vue";
@@ -56,8 +57,6 @@ const routes = [
     name: "Admin",
     components: {
       main: Admin,
-      sideBar: Aside,
-      navBar: Nav
     },
     children: [
       {

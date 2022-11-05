@@ -6,7 +6,7 @@
     <router-view name="sideBar" class="Admin-sideBar"></router-view>
 
     <div class="container-right">
-      <router-view name="navBar"></router-view>
+      
       <router-view name="main" class="Admin-main"></router-view>
     </div>
   </div>
