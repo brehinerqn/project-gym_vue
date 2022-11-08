@@ -130,9 +130,9 @@
   left: 260px;
   background: #fff;
   transition: 0.9s;
-  background-image: url("../src/assets/img/foto.jpg");
+  /* background-image: url("../src/assets/img/foto.jpg");
   background-size: cover;
-  background-position: top;
+  background-position: top; */
   height: 100vh;
   
 }
@@ -143,9 +143,9 @@
   left: 80px;
   background: #fff;
   transition: 1s;
-  background-image: url("../src/assets/img/foto.jpg");
+  /* background-image: url("../src/assets/img/foto.jpg");
   background-size: cover;
-  background-position: top;
+  background-position: top; */
   height: 100vh;
 }
 .fondo{
