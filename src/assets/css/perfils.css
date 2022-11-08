@@ -1,0 +1,25 @@
+
+.container-perfil{
+    display: flex;
+    flex-flow: column;
+    text-align: center;
+    height: 100vh;
+}
+.section1{
+    display: flex;
+    justify-content: center;
+    background-image: url("../src/assets/img/qw.jpg");
+    background-size: cover;
+    background-position: top;
+   
+    width: 100%;
+    height: 30%;
+
+}
+#foto{
+  margin-top: 7rem;
+  margin-bottom: 2rem;
+  width: 200px;
+  height: 200px;
+  border-radius: 100%;
+}

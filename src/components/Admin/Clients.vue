@@ -1,13 +1,8 @@
 <template>
     <div class="contenedor">
         <article>
-            <button
-                id="btn"
-                type="button"
-                class="btn btn-secondary"
-                data-bs-toggle="modal"
-                data-bs-target="#modal-create"
-            >
+            <button id="btn" type="button" class="btn btn-secondary" data-bs-toggle="modal"
+                data-bs-target="#modal-create">
                 <img id="btns" src="../../assets/img/edit.png" />
             </button>
 
@@ -42,32 +37,15 @@
                         <td>{{ c.companies_id }}</td>
 
                         <td>
-                            <button
-                                type="button"
-                                class="btn btn"
-                                data-bs-toggle="modal"
-                                data-bs-target="#modal-edit"
-                                @click="edit_clients(c)"
-                            >
-                                <img
-                                    id="btns"
-                                    src="../../assets/img/edit.png"
-                                />
+                            <button type="button" class="btn btn" data-bs-toggle="modal" data-bs-target="#modal-edit"
+                                @click="edit_clients(c)">
+                                <img id="btns" src="../../assets/img/edit.png" />
                             </button>
                         </td>
                         <td>
-                            <!-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop1" >
-                <img id="btns" src="../../assets/img/delete.png" />
-              </button> -->
-                            <button
-                                type="button"
-                                class="btn"
-                                @click="borrar(c.id)"
-                            >
-                                <img
-                                    id="btns"
-                                    src="../../assets/img/delete.png"
-                                />
+
+                            <button type="button" class="btn" @click="borrar(c.id)">
+                                <img id="btns" src="../../assets/img/delete.png" />
                             </button>
                         </td>
                     </tr>
@@ -76,214 +54,97 @@
         </article>
     </div>
     <!-- Modal crear-->
-    <div
-        class="modal fade"
-        id="modal-create"
-        data-bs-backdrop="static"
-        data-bs-keyboard="false"
-        tabindex="-1"
-        aria-hidden="true"
-    >
+    <div class="modal fade" id="modal-create" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" style="color: white">New client</h5>
-                    <button
-                        type="button"
-                        class="btn-close"
-                        data-bs-dismiss="modal"
-                        aria-label="Close"
-                    ></button>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <form class="form-tarifas">
                         <div id="izq">
                             <div class="form-floating mb-3">
-                                <input
-                                    type="text"
-                                    name="name"
-                                    v-model="form.name"
-                                    class="form-control"
-                                    id="floatingInput1"
-                                />
+                                <input type="text" name="name" v-model="form.name" class="form-control"
+                                    id="floatingInput1" />
                                 <label for="floatingInput1">name</label>
-                                <span
-                                    style="color: aliceblue"
-                                    v-if="errors.name"
-                                >
-                                    {{ errors.name }}</span
-                                >
+                                <span style="color: aliceblue" v-if="errors.name">
+                                    {{ errors.name }}</span>
                             </div>
                             <div class="form-floating mb-3">
-                                <input
-                                    type="email"
-                                    name="email"
-                                    v-model="form.email"
-                                    class="form-control"
-                                    id="floatingInput2"
-                                    placeholder="name@example.com"
-                                />
+                                <input type="email" name="email" v-model="form.email" class="form-control"
+                                    id="floatingInput2" placeholder="name@example.com" />
                                 <label for="floatingInput2"> email</label>
-                                <span
-                                    style="color: aliceblue"
-                                    v-if="errors.email"
-                                >
-                                    {{ errors.email }}</span
-                                >
+                                <span style="color: aliceblue" v-if="errors.email">
+                                    {{ errors.email }}</span>
                             </div>
                             <div class="form-floating mb-3">
-                                <input
-                                    type="password"
-                                    name="password"
-                                    v-model="form.password"
-                                    class="form-control"
-                                    id="floatingInput3"
-                                    placeholder="password"
-                                />
+                                <input type="password" name="password" v-model="form.password" class="form-control"
+                                    id="floatingInput3" placeholder="password" />
                                 <label for="floatingInput3"> password</label>
-                                <span
-                                    style="color: aliceblue"
-                                    v-if="errors.password"
-                                >
-                                    {{ errors.password }}</span
-                                >
+                                <span style="color: aliceblue" v-if="errors.password">
+                                    {{ errors.password }}</span>
                             </div>
                             <div class="form-floating mb-3">
-                                <input
-                                    type="password"
-                                    name="password"
-                                    v-model="form.password_confirmation"
-                                    class="form-control"
-                                    id="floatingInput4"
-                                    placeholder="password_confirmation"
-                                />
-                                <label for="floatingInput4"
-                                    >password confirmation</label
-                                >
-                                <span
-                                    style="color: aliceblue"
-                                    v-if="errors.password_confirmation"
-                                >
-                                    {{ errors.password_confirmation }}</span
-                                >
+                                <input type="password" name="password" v-model="form.password_confirmation"
+                                    class="form-control" id="floatingInput4" placeholder="password_confirmation" />
+                                <label for="floatingInput4">password confirmation</label>
+                                <span style="color: aliceblue" v-if="errors.password_confirmation">
+                                    {{ errors.password_confirmation }}</span>
                             </div>
                             <div class="form-floating mb-3">
-                                <input
-                                    type="number"
-                                    name="age"
-                                    v-model="form.age"
-                                    class="form-control"
-                                    id="floatingInput5"
-                                    placeholder=""
-                                />
+                                <input type="number" name="age" v-model="form.age" class="form-control"
+                                    id="floatingInput5" placeholder="" />
                                 <label for="floatingInput5">age</label>
-                                <span
-                                    style="color: aliceblue"
-                                    v-if="errors.age"
-                                >
-                                    {{ errors.age }}</span
-                                >
+                                <span style="color: aliceblue" v-if="errors.age">
+                                    {{ errors.age }}</span>
                             </div>
                             <div class="form-floating mb-3">
-                                <input
-                                    type="number"
-                                    name="weight"
-                                    v-model="form.weight"
-                                    class="form-control"
-                                    id="floatingInput6"
-                                    placeholder=""
-                                />
+                                <input type="number" name="weight" v-model="form.weight" class="form-control"
+                                    id="floatingInput6" placeholder="" />
                                 <label for="floatingInput6"> weight</label>
-                                <span
-                                    style="color: aliceblue"
-                                    v-if="errors.weight"
-                                >
-                                    {{ errors.weight }}</span
-                                >
+                                <span style="color: aliceblue" v-if="errors.weight">
+                                    {{ errors.weight }}</span>
                             </div>
                         </div>
 
                         <div id="dere">
                             <div class="form-floating mb-3">
-                                <input
-                                    type="text"
-                                    name="nivel"
-                                    v-model="form.nivel"
-                                    class="form-control"
-                                    id="floatingInput7"
-                                    placeholder=""
-                                />
+                                <input type="text" name="nivel" v-model="form.nivel" class="form-control"
+                                    id="floatingInput7" placeholder="" />
                                 <label for="floatingInput7"> nivel</label>
-                                <span
-                                    style="color: aliceblue"
-                                    v-if="errors.nivel"
-                                >
-                                    {{ errors.nivel }}</span
-                                >
+                                <span style="color: aliceblue" v-if="errors.nivel">
+                                    {{ errors.nivel }}</span>
                             </div>
 
                             <div class="form-floating mb-3">
-                                <input
-                                    type="text"
-                                    name="injures"
-                                    v-model="form.injures"
-                                    class="form-control"
-                                    id="floatingInput8"
-                                    placeholder=""
-                                />
+                                <input type="text" name="injures" v-model="form.injures" class="form-control"
+                                    id="floatingInput8" placeholder="" />
                                 <label for="floatingInput8"> injures</label>
-                                <span
-                                    style="color: aliceblue"
-                                    v-if="errors.injures"
-                                >
-                                    {{ errors.injures }}</span
-                                >
+                                <span style="color: aliceblue" v-if="errors.injures">
+                                    {{ errors.injures }}</span>
                             </div>
                             <div class="form-floating mb-3">
-                                <input
-                                    type="date"
-                                    name="injures"
-                                    v-model="form.start_date"
-                                    class="form-control"
-                                    id="floatingInput9"
-                                    placeholder=""
-                                />
+                                <input type="date" name="injures" v-model="form.start_date" class="form-control"
+                                    id="floatingInput9" placeholder="" />
                                 <label for="floatingInput9"> start date</label>
-                                <span
-                                    style="color: aliceblue"
-                                    v-if="errors.start_date"
-                                >
-                                    {{ errors.start_date }}</span
-                                >
+                                <span style="color: aliceblue" v-if="errors.start_date">
+                                    {{ errors.start_date }}</span>
                             </div>
                             <div class="form-floating mb-3">
-                                <input
-                                    type="date"
-                                    name="injures"
-                                    v-model="form.finish_date"
-                                    class="form-control"
-                                    id="floatingInput0"
-                                    placeholder=""
-                                />
+                                <input type="date" name="injures" v-model="form.finish_date" class="form-control"
+                                    id="floatingInput0" placeholder="" />
                                 <label for="floatingInput0"> finish date</label>
-                                <span
-                                    style="color: aliceblue"
-                                    v-if="errors.finish_date"
-                                >
-                                    {{ errors.finish_date }}</span
-                                >
+                                <span style="color: aliceblue" v-if="errors.finish_date">
+                                    {{ errors.finish_date }}</span>
                             </div>
                         </div>
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <button
-                        type="button"
-                        class="btn btn-secondary"
-                        data-bs-dismiss="modal"
-                        data-bs-toggle="modal"
-                        data-bs-target="#modal-create-rates"
-                    >
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" data-bs-toggle="modal"
+                        data-bs-target="#modal-create-rates">
                         select pago
                     </button>
                     <!-- <button type="button" class="btn btn-primary " @click="store()" data-bs-dismiss="modal"> created</button> -->
@@ -293,33 +154,18 @@
     </div>
 
     <!-- Modal crear rates -->
-    <div
-        class="modal fade"
-        id="modal-create-rates"
-        data-bs-backdrop="static"
-        data-bs-keyboard="false"
-        tabindex="-1"
-        aria-hidden="true"
-    >
+    <div class="modal fade" id="modal-create-rates" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title">Modal title</h5>
-                    <button
-                        type="button"
-                        class="btn-close"
-                        data-bs-dismiss="modal"
-                        aria-label="Close"
-                    ></button>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <form class="form-tarifas">
-                        <article
-                            id="article"
-                            v-for="t in rates_list"
-                            :key="'rates_list' + t.id"
-                            @click="select_rate(t)"
-                        >
+                        <article id="article" v-for="t in rates_list" :key="'rates_list' + t.id"
+                            @click="select_rate(t)">
                             <p>
                                 {{ t.name }}
                             </p>
@@ -330,12 +176,7 @@
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <button
-                        type="button"
-                        class="btn btn-secondary"
-                        data-bs-dismiss="modal"
-                        @click="store()"
-                    >
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" @click="store()">
                         crear
                     </button>
                 </div>
@@ -345,186 +186,88 @@
     <!-- Modal crear rates -->
 
     <!-- Modal editar-->
-    <div
-        class="modal fade"
-        id="modal-edit"
-        data-bs-backdrop="static"
-        data-bs-keyboard="false"
-        tabindex="-1"
-        aria-hidden="true"
-    >
+    <div class="modal fade" id="modal-edit" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" style="color: white">
                         Edit client
                     </h5>
-                    <button
-                        type="button"
-                        class="btn-close"
-                        data-bs-dismiss="modal"
-                        aria-label="Close"
-                    ></button>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <form class="form-tarifas">
                         <div id="izq">
                             <div class="form-floating mb-3">
-                                <input
-                                    type="text"
-                                    name="name"
-                                    v-model="form.name"
-                                    class="form-control"
-                                    id="floatingInput1-edit"
-                                />
+                                <input type="text" name="name" v-model="form.name" class="form-control"
+                                    id="floatingInput1-edit" />
                                 <label for="floatingInput1-edit">name</label>
-                                <span
-                                    style="color: aliceblue"
-                                    v-if="errors.name"
-                                >
-                                    {{ errors.name }}</span
-                                >
+                                <span style="color: aliceblue" v-if="errors.name">
+                                    {{ errors.name }}</span>
                             </div>
                             <div class="form-floating mb-3">
-                                <input
-                                    type="email"
-                                    name="email"
-                                    v-model="form.email"
-                                    class="form-control"
-                                    id="floatingInput2-edit"
-                                    placeholder="name@example.com"
-                                />
+                                <input type="email" name="email" v-model="form.email" class="form-control"
+                                    id="floatingInput2-edit" placeholder="name@example.com" />
                                 <label for="floatingInput2-edit"> email</label>
-                                <span
-                                    style="color: aliceblue"
-                                    v-if="errors.email"
-                                >
-                                    {{ errors.email }}</span
-                                >
-                            </div>  
-                            <div class="form-floating mb-3">
-                                <input
-                                    type="number"
-                                    name="age"
-                                    v-model="form.age"
-                                    class="form-control"
-                                    id="floatingInput5-edit"
-                                    placeholder=""
-                                />
-                                <label for="floatingInput5-edit">age</label>
-                                <span
-                                    style="color: aliceblue"
-                                    v-if="errors.age"
-                                >
-                                    {{ errors.age }}</span
-                                >
+                                <span style="color: aliceblue" v-if="errors.email">
+                                    {{ errors.email }}</span>
                             </div>
                             <div class="form-floating mb-3">
-                                <input
-                                    type="number"
-                                    name="weight"
-                                    v-model="form.weight"
-                                    class="form-control"
-                                    id="floatingInput6-edit"
-                                    placeholder=""
-                                />
+                                <input type="number" name="age" v-model="form.age" class="form-control"
+                                    id="floatingInput5-edit" placeholder="" />
+                                <label for="floatingInput5-edit">age</label>
+                                <span style="color: aliceblue" v-if="errors.age">
+                                    {{ errors.age }}</span>
+                            </div>
+                            <div class="form-floating mb-3">
+                                <input type="number" name="weight" v-model="form.weight" class="form-control"
+                                    id="floatingInput6-edit" placeholder="" />
                                 <label for="floatingInput6-edit"> weight</label>
-                                <span
-                                    style="color: aliceblue"
-                                    v-if="errors.weight"
-                                >
-                                    {{ errors.weight }}</span
-                                >
+                                <span style="color: aliceblue" v-if="errors.weight">
+                                    {{ errors.weight }}</span>
                             </div>
                         </div>
 
                         <div id="dere">
                             <div class="form-floating mb-3">
-                                <input
-                                    type="text"
-                                    name="nivel"
-                                    v-model="form.nivel"
-                                    class="form-control"
-                                    id="floatingInput7-edit"
-                                    placeholder=""
-                                />
+                                <input type="text" name="nivel" v-model="form.nivel" class="form-control"
+                                    id="floatingInput7-edit" placeholder="" />
                                 <label for="floatingInput7-edit"> nivel</label>
-                                <span
-                                    style="color: aliceblue"
-                                    v-if="errors.nivel"
-                                >
-                                    {{ errors.nivel }}</span
-                                >
+                                <span style="color: aliceblue" v-if="errors.nivel">
+                                    {{ errors.nivel }}</span>
                             </div>
 
                             <div class="form-floating mb-3">
-                                <input
-                                    type="text"
-                                    name="injures"
-                                    v-model="form.injures"
-                                    class="form-control"
-                                    id="floatingInput8-edit"
-                                    placeholder=""
-                                />
+                                <input type="text" name="injures" v-model="form.injures" class="form-control"
+                                    id="floatingInput8-edit" placeholder="" />
                                 <label for="floatingInput8-edit">
-                                    injures</label
-                                >
-                                <span
-                                    style="color: aliceblue"
-                                    v-if="errors.injures"
-                                >
-                                    {{ errors.injures }}</span
-                                >
+                                    injures</label>
+                                <span style="color: aliceblue" v-if="errors.injures">
+                                    {{ errors.injures }}</span>
                             </div>
                             <div class="form-floating mb-3">
-                                <input
-                                    type="date"
-                                    name="injures"
-                                    v-model="form.start_date"
-                                    class="form-control"
-                                    id="floatingInput9-edit"
-                                    placeholder=""
-                                />
+                                <input type="date" name="injures" v-model="form.start_date" class="form-control"
+                                    id="floatingInput9-edit" placeholder="" />
                                 <label for="floatingInput9-edit">
-                                    start date</label
-                                >
-                                <span
-                                    style="color: aliceblue"
-                                    v-if="errors.start_date"
-                                >
-                                    {{ errors.start_date }}</span
-                                >
+                                    start date</label>
+                                <span style="color: aliceblue" v-if="errors.start_date">
+                                    {{ errors.start_date }}</span>
                             </div>
                             <div class="form-floating mb-3">
-                                <input
-                                    type="date"
-                                    name="injures"
-                                    v-model="form.finish_date"
-                                    class="form-control"
-                                    id="floatingInput0-edit"
-                                    placeholder=""
-                                />
+                                <input type="date" name="injures" v-model="form.finish_date" class="form-control"
+                                    id="floatingInput0-edit" placeholder="" />
                                 <label for="floatingInput0-edit">
-                                    finish date</label
-                                >
-                                <span
-                                    style="color: aliceblue"
-                                    v-if="errors.finish_date"
-                                >
-                                    {{ errors.finish_date }}</span
-                                >
+                                    finish date</label>
+                                <span style="color: aliceblue" v-if="errors.finish_date">
+                                    {{ errors.finish_date }}</span>
                             </div>
                         </div>
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <button
-                        type="button"
-                        class="btn btn-secondary"
-                        data-bs-dismiss="modal"
-                        data-bs-toggle="modal"
-                        data-bs-target="#modal-edit-rates"
-                    >
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" data-bs-toggle="modal"
+                        data-bs-target="#modal-edit-rates">
                         select pago
                     </button>
                     <!-- <button type="button" class="btn btn-primary " @click="store()" data-bs-dismiss="modal"> created</button> -->
@@ -534,33 +277,18 @@
     </div>
 
     <!-- Modal editar rates -->
-    <div
-        class="modal fade"
-        id="modal-edit-rates"
-        data-bs-backdrop="static"
-        data-bs-keyboard="false"
-        tabindex="-1"
-        aria-hidden="true"
-    >
+    <div class="modal fade" id="modal-edit-rates" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title">Modal title</h5>
-                    <button
-                        type="button"
-                        class="btn-close"
-                        data-bs-dismiss="modal"
-                        aria-label="Close"
-                    ></button>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <form class="form-tarifas">
-                        <article
-                            id="article"
-                            v-for="t in rates_list"
-                            :key="'rates_list_edit' + t.id"
-                            @click="select_rate(t)"
-                        >
+                        <article id="article" v-for="t in rates_list" :key="'rates_list_edit' + t.id"
+                            @click="select_rate(t)">
                             <p>
                                 {{ t.name }}
                             </p>
@@ -571,13 +299,7 @@
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <button
-                        type="button"
-                        class="btn btn-secondary"
-                        @click="update(t)"
-                        data-bs-dismiss="modal"
-
-                    >
+                    <button type="button" class="btn btn-secondary" @click="update(t)" data-bs-dismiss="modal">
                         crear
                     </button>
                 </div>
@@ -598,7 +320,10 @@ export default {
             this.form.user_id = this.user.id;
             this.form.companies_id = this.user.companies_id;
         } else {
-            //se va para el login
+            this.$router.push({
+                name: 'Login',
+                params: { message: rs.data.message, },
+            });
         }
 
         this.get_rates();
@@ -664,6 +389,7 @@ export default {
         },
 
         async get_clients() {
+
             try {
                 let rs = await this.axios.get(
                     "/api/clients"

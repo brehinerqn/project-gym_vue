@@ -7,9 +7,10 @@ import ForgotPassword from "./components/ForgotPassword.vue";
 import ResetPassword from "./components/ResetPassword.vue";
 // admin routes 
 // import Aside from "./components/Admin/Aside.vue";
-// import Nav from "./components/Admin/Nav.vue";
-
-
+import SuperAdmin from "./components/SuperAdmin/SuperAdmin.vue";
+import Perfilsuper from "./components/SuperAdmin/Perfilsuper.vue";
+import Companies from "./components/SuperAdmin/Companies.vue";
+Companies
 import Clients from "./components/Admin/Clients.vue";
 import Assists from "./components/Admin/Assists.vue";
 import Inventory from "./components/Admin/Inventory.vue";
@@ -80,6 +81,24 @@ const routes = [
         component: Sales,
       },
     ],
+  },
+  {
+    path: "/SuperAdmin",
+    name: "SuperAdmin",
+    component: SuperAdmin,
+  
+    children: [
+      {
+        path: "Perfilsuper",
+        component: Perfilsuper,
+      },
+      {
+        path: "Companies",
+        component: Companies,
+      },
+      
+    ],
+
   },
 
 ];

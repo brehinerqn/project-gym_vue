@@ -15,7 +15,7 @@
 
 .containers {
   overflow-x: hidden;
-  position: relative;
+  
   width: 100%;
 }
 
@@ -24,7 +24,7 @@
   width: 250px;
   height: 100%;
   background: #202020dc;
-  transition: 0.5s;
+  transition: 0.9s;
   overflow: hidden;
 }
 
@@ -124,27 +124,34 @@
 
 /* MAIN */
 .main1 {
+  overflow: hidden;
   position: absolute;
-  width: calc(100% - 270px);
+  width: 79%;
   left: 260px;
   background: #fff;
-  transition: 0.5s;
+  transition: 0.9s;
+  background-image: url("../src/assets/img/foto.jpg");
+  background-size: cover;
+  background-position: top;
+  height: 100vh;
+  
+}
+
+.main1.actives {
+  position: relative;
+  width: 93.5%;
+  left: 80px;
+  background: #fff;
+  transition: 1s;
   background-image: url("../src/assets/img/foto.jpg");
   background-size: cover;
   background-position: top;
   height: 100vh;
 }
-
-.main1.actives {
-  position: relative;
-  width: calc(100% - 90px);
-  left: 80px;
-  background: #fff;
-  transition: 0.5s;
-  background-image: url("../src/assets/img/foto.jpg");
- background-size: cover;
-  background-position: top;
-  height: 100vh;
+.fondo{
+  height: 100%;
+  width: 100%;
+  
 }
 
 .topbar {
@@ -220,8 +227,8 @@
 
 .dropdown-menu {
 
- margin-right: 2rem;
- 
+  margin-right: 2rem;
+
 }
 
 
@@ -354,22 +361,28 @@
   color: #222;
   border-bottom: 1px solid rgba(0, 0, 0, 0.08);
 }
+
 .details .recentorders table tbody tr:hover {
   background: #287bff;
   color: #fff;
 }
+
 .details .recentorders table tr td {
   padding: 10px;
 }
+
 .details .recentorders table tr td:last-child {
   text-align: end;
 }
+
 .details .recentorders table tr td:nth-child(2) {
   text-align: end;
 }
+
 .details .recentorders table tr td:nth-child(3) {
   text-align: center;
 }
+
 .status .delivered {
   padding: 2px 4px;
   background: #8de02c;

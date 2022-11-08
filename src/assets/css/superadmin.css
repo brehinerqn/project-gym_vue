@@ -1,0 +1,107 @@
+.container-body {
+  display: flex;
+  height: 100vh;
+}
+.aside {
+  display: flex;
+  width: 250px;
+  height: 100%;
+  background-color: #212529 !important;
+  border: solid 1px red !important;
+}
+
+ul {
+  top: 0;
+  left: 0;
+  width: 100%;
+}
+
+ul li {
+  width: 100%;
+  list-style: none;
+  border-top-left-radius: 30px;
+  border-bottom-left-radius: 30px;
+}
+ul li:hover,
+ul li.hovered {
+  background: #fff;
+}
+ul li:nth-child(1) {
+  margin-bottom: 40px;
+  pointer-events: none;
+}
+ul li a {
+  display: block;
+  width: 100%;
+  display: flex;
+  text-decoration: none;
+  color: #fff;
+}
+ul li:hover a,
+ul li.hovered a {
+  color: #00000093;
+}
+ul li a .icon {
+  display: block;
+  min-width: 60px;
+  height: 60px;
+  line-height: 70px;
+  text-align: center;
+}
+
+ul li a .icon ion-icon {
+  font-size: 1.75em;
+}
+
+ul li a .title {
+  position: relative;
+  display: block;
+  padding: 0 10px;
+  height: 60px;
+  line-height: 60px;
+  text-align: start;
+  white-space: nowrap;
+}
+
+ul li:hover a::before,
+ul li.hovered a::before {
+  content: "";
+  position: absolute;
+  right: 0;
+  top: -50px;
+  width: 50px;
+  height: 50px;
+  background: transparent;
+  border-radius: 50%;
+  box-shadow: 35px 35px 0 10px #fff;
+}
+
+ ul li:hover a::after,
+ ul li.hovered a::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  bottom: -50px;
+  width: 50px;
+  height: 50px;
+  background: transparent;
+  border-radius: 50%;
+  box-shadow: 35px -35px 0 10px #fff;
+  pointer-events: none;
+}
+main {
+    width: 93.5%;
+    transition: 1s;
+    background-size: cover;
+    background-position: top;
+    height: 100vh;
+  }
+
+main {
+  display: flex;
+  z-index: 100;
+  flex-flow: column;
+  flex: 1;
+  border: solid 1px rgb(0, 241, 72) !important;
+  width: 100%;
+}

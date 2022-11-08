@@ -4,7 +4,7 @@
 }
 .contenedor {
     height: 100%;
-    width: 87vw;
+    width: 100%;
 }
 article {
     height: 100%;
@@ -16,6 +16,7 @@ article::-webkit-scrollbar {
 table,
 th,
 td {
+   
     border: 1px solid rgb(0, 0, 0);
     border-collapse: collapse;
     background: rgba(255, 255, 255, 0.425);
@@ -27,8 +28,8 @@ td {
 
 table {
     text-align: center;
-    margin: 2rem;
-    width: 95%;
+    margin: 1rem;
+
 }
 #btns {
     width: 25px;

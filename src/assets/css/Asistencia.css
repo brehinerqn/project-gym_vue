@@ -1,6 +1,18 @@
+.contenedor {
+  height: 100%;
+  width: 100%;
+}
+article {
+  height: 100%;
+  overflow-y: scroll;
+}
+article::-webkit-scrollbar {
+  display: none;
+}
 table,
 th,
 td {
+ 
   border: 1px solid rgb(0, 0, 0);
   border-collapse: collapse;
   background: rgba(255, 255, 255, 0.425);
@@ -12,16 +24,40 @@ td {
 
 table {
   text-align: center;
-  margin: 2rem;
-  width: 90%;
+  margin: 1rem;
+
 }
-#tab4 {
-    width: 87vw;
+#btns {
+  width: 25px;
+  margin: 0%;
+  padding: 0%;
 }
-.contenedor{
-    height: 100%;
+#btn {
+  display: flex;
+  margin: 1rem;
 }
-article {
-    height: 100%;
-    overflow-y: scroll;
-  }
+h1 {
+  font-family: titulo;
+  display: flex;
+  justify-content: center;
+  color: aliceblue;
+  margin-top: 20px;
+  text-shadow: 5px 3px 8px rgb(104, 103, 103);
+}
+.form-tarifas {
+  display: flex;
+}
+#izq {
+  margin-left: 1rem;
+}
+#dere {
+  margin-left: 1rem;
+}
+
+
+#article {
+  width: 180px;
+  padding: 10px;
+  margin-left: 10px;
+  background-color: rgb(233, 233, 233);
+}

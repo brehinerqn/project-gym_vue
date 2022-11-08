@@ -9,6 +9,8 @@
       
       <router-view name="main" class="Admin-main"></router-view>
     </div>
+
+    
   </div>
 
 

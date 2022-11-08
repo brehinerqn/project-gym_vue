@@ -44,16 +44,16 @@
 
 
                     <input type="password" name="password" v-model="form.password" placeholder="Password" />
-                    <span style="color: aliceblue" v-if="errors.password">{{
-                            errors.password[0]
-                    }}</span>
+                    <span style="color: aliceblue" v-if="errors.password">
+                                    {{ errors.password }}</span>
 
 
 
-                    <p style="color: white" v-if="message">{{ message }}</p>
+                    
 
                     <button class="btn btn-lg active" aria-pressed="true" type="button"
                         @click="login()">Sign In</button>
+                        <p style="color: white" v-if="message">{{ message }}</p>
                     <router-link class="link" to="/forgot-password">Olvidaste tu contraseña?</router-link>
 
 
@@ -109,6 +109,10 @@ export default {
     },
     mounted() {
 
+        if (this.$route.params.message)
+            this.message = this.$route.params.message
+
+
         const signUpButton = document.getElementById("signUp");
         const signInButton = document.getElementById("signIn");
         const container = document.getElementById("container");
@@ -124,12 +128,27 @@ export default {
 
 
 
-        if (this.$route.params.message)
-            this.message = this.$route.params.message
+       
+        
+    
 
     },
 
     methods: {
+
+        error_message(e) {
+            this.errors = {};
+            if (e.response.data.errors) this.errors = e.response.data.errors;
+            else if (e.response.data.message == "Unauthenticated.") {
+                this.$router.push({
+                    name: "Login",
+                    params: {
+                        message: "datos incorrestos vuelve a intentarlo",
+                    },
+                });
+            }
+        },
+
         async login() {
             try {
                 const rs = await this.axios.post("/api/login", this.form);
@@ -138,7 +157,7 @@ export default {
                 switch (role) {
                     case 1:
                         this.$router.push({
-                            path: "/Admin/Home",
+                            path: "/Superadmin/Perfilsuper",
                             // params: {
                             // token:rs.data.token,
                             // }
@@ -173,6 +192,7 @@ export default {
                 localStorage.token = rs.data.token;
                 localStorage.user = JSON.stringify(rs.data.user);
             } catch (e) {
+                this. error_message(e)
                 this.errors = {},
                     this.message = null;
 
